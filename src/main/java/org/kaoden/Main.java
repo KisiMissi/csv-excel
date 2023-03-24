@@ -11,19 +11,19 @@ import java.util.*;
 public class Main {
 
     // Начальная и конечная даты должны подаваться на вход вместе с файлом
-    private static final String START_DATE = "2023-01-01";
-    private static final String END_DATE = "2023-03-30";
+    private static final String START_DATE = "2023-02-01";
+    private static final String END_DATE = "2023-02-28";
 
     // Путь к входному файлу (позже убрать)
     private final static File file =
             new File("D:\\Projects\\CsvParsing\\src\\main\\resources\\In.csv");
 
-    private static List<Task> taskList; // Список "Задач"
     private static final Map<String, Integer> hourlyRate = new HashMap<>(); // Содержит почасовую ставку
 
     public static void main(String[] args){
 
-        taskList = FileHandler.readingFile(file);
+        // Список "Задач"
+        List<Task> taskList = FileHandler.readingFile(file);
 
         taskList.stream()
                 .filter(x -> !x.getAssigneeEmail().equals(""))
@@ -31,7 +31,6 @@ public class Main {
 
         taskList = BeanListHandler.dropoutByDate(taskList, START_DATE, END_DATE);
 
-//        System.out.println(taskList.get(0).toString());
-        new SpreadsheetWriter(taskList, hourlyRate).tableFilling();
+        new SpreadsheetWriter().tableFilling(taskList, hourlyRate);
     }
 }

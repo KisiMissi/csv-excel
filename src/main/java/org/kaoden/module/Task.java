@@ -6,6 +6,7 @@ import lombok.Setter;
 
 public class Task {
 
+    @Getter
     @CsvBindByPosition(position = 0)
     private String taskId;
 
@@ -35,6 +36,7 @@ public class Task {
     private String assigneeEmail;
 
     @Getter
+    @Setter
     @CsvBindByPosition(position = 8)
     private String startDate;
 

@@ -20,7 +20,6 @@
   <packaging>jar</packaging>
 
   <name>CvsParsing</name>
-  <url>http://maven.apache.org</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -34,12 +33,10 @@
       <scope>provided</scope>
     </dependency>
 
-    <!-- Google Spreadsheet-->
     <dependency>
       <groupId>builders.dsl</groupId>
-      <artifactId>spreadsheet-builder-google</artifactId>
+      <artifactId>spreadsheet-builder-poi</artifactId>
       <version>3.0.1</version>
-      <type>pom</type>
     </dependency>
 
     <dependency>
