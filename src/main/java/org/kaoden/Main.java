@@ -6,7 +6,11 @@ import org.kaoden.in.FileHandler;
 import org.kaoden.out.SpreadsheetWriter;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 public class Main {
 
@@ -20,17 +24,33 @@ public class Main {
 
     private static final Map<String, Integer> hourlyRate = new HashMap<>(); // Содержит почасовую ставку
 
+    private static Logger logger;
+    static {
+        try (FileInputStream ins = new FileInputStream("D:\\Projects\\CsvParsing\\logging.properties")) {
+            LogManager.getLogManager().readConfiguration(ins);
+            logger = Logger.getLogger(BeanListHandler.class.getName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args){
 
         // Список "Задач"
         List<Task> taskList = FileHandler.readingFile(file);
 
-        taskList.stream()
-                .filter(x -> !x.getAssigneeEmail().equals(""))
-                .forEach(x -> hourlyRate.put(x.getAssigneeEmail(), 350));
+        try {
+            taskList.stream()
+                    .filter(x -> !x.getAssigneeEmail().equals(""))
+                    .forEach(x -> hourlyRate.put(x.getAssigneeEmail(), 350));
+        } catch(NullPointerException e) {
+            logger.log(Level.WARNING, "Exception: ", e);
+        }
 
+        // Фильтрация задач по дате
         taskList = BeanListHandler.dropoutByDate(taskList, START_DATE, END_DATE);
 
-        new SpreadsheetWriter().tableFilling(taskList, hourlyRate);
+        // Создание электронной таблицы
+        SpreadsheetWriter.tableFilling(taskList, hourlyRate);
     }
 }

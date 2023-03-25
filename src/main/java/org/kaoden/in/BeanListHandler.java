@@ -1,13 +1,28 @@
 package org.kaoden.in;
 
+import org.kaoden.Main;
 import org.kaoden.module.Task;
 
+import java.io.FileInputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 public class BeanListHandler {
+
+    private static Logger logger;
+    static {
+        try (FileInputStream ins = new FileInputStream("D:\\Projects\\CsvParsing\\logging.properties")) {
+            LogManager.getLogManager().readConfiguration(ins);
+            logger = Logger.getLogger(BeanListHandler.class.getName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public static List<Task> dropoutByDate(List<Task> beans, String startDate, String endDate) {
 
@@ -21,13 +36,13 @@ public class BeanListHandler {
 
             // Проверка наличия дат начала и конца
             if (task.getDueDate().equals("") || task.getStartDate().equals("")) {
-                System.out.println("Missing START DATE or DUE DATE : " + task.getTaskId());
+                logger.log(Level.INFO, "Skip task without DATE: " + task.getTaskId());
                 continue;
             }
 
             // Проверка наличия занятости
             if (task.getBusy().equals("")) {
-                System.out.println("Missing BUSY : " + task.getTaskId());
+                logger.log(Level.INFO, "Skip task without BUSY: " + task.getTaskId());
                 continue;
             }
 
