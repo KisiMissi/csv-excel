@@ -1,5 +1,5 @@
 # Default ignored files
-/shelf/
+/.idea/shelf/
 /workspace.xml
 # Editor-based HTTP Client requests
 /httpRequests/
@@ -9,7 +9,10 @@
 # Ignoring compiled classes
 target/
 
-# Ignoring output files and task file
-resources/task.txt
+# Ignoring logging files
+logging/
+
+# Ingoring resources files
+task.txt
 ExampleOut.csv
 Out.xlsx
