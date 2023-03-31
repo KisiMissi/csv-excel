@@ -13,8 +13,9 @@ import java.util.logging.Logger;
 public class FileHandler {
 
     private static Logger logger;
+
     static {
-        try (FileInputStream ins = new FileInputStream("D:\\Projects\\CsvParsing\\logging.properties")) {
+        try (FileInputStream ins = new FileInputStream("logging.properties")) {
             LogManager.getLogManager().readConfiguration(ins);
             logger = Logger.getLogger(FileHandler.class.getName());
         } catch (Exception e) {
@@ -38,7 +39,7 @@ public class FileHandler {
 
         } catch (IOException e) {
             logger.log(Level.WARNING, "IOException: ", e);
+            throw new NullPointerException();
         }
-        return null;
     }
 }

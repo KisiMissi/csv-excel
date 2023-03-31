@@ -18,7 +18,7 @@ public class SpreadsheetWriter {
     // Путь создание новой электронной таблицы
     private static final File SPREADSHEET_FILE = new File("Out.xlsx");
 
-    // Заполение таблицы
+    // Заполнение таблицы
     public static void tableFilling(List<Task> taskList, Map<String, Integer> hourlyRate) {
 
         try {
@@ -33,8 +33,23 @@ public class SpreadsheetWriter {
                 AtomicInteger sectionCount = new AtomicInteger(0); // Подсчет строк в одной секции
                 List<Integer> sectionSumInd = new ArrayList<>(); // Хранение индексов итоговых сумм каждой секции
 
+
                 // Заполение основных поелй таблицы
-                mainFields(taskList, hourlyRate, s, section, rowIndex, sectionCount, sectionSumInd);
+                for (Task task : taskList) {
+
+                    // Заполнение строки с итоговой суммой задач одной секции
+                    if ((! task.getSectionColumn().equals(section))) {
+                        section = sectionSum(s, section, rowIndex, sectionCount, sectionSumInd, task);
+                    }
+
+                    // Заполнение ряда одной задачей
+                    fillRow(hourlyRate, s, rowIndex, sectionCount, task);
+
+                    // Заполнение строки с итоговой суммой задач одной секции, если это последняя секция
+                    if (rowIndex.get() == taskList.size()) {
+                        section = sectionSum(s, section, rowIndex, sectionCount, sectionSumInd, task);
+                    }
+                }
 
                 // Пропуск двух строк
                 s.row(); s.row();
@@ -45,6 +60,54 @@ public class SpreadsheetWriter {
         } catch(FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    private static void fillRow(Map<String, Integer> hourlyRate, SheetDefinition s, AtomicInteger rowIndex, AtomicInteger sectionCount, Task task) {
+        s.row(r -> {
+            // Название задачи
+            r.cell(task.getName());
+            // Секция
+            r.cell(task.getSectionColumn());
+            // Назначение
+            r.cell(task.getAssignee());
+            // Дата начала
+            r.cell(c -> {
+                c.value(task.getStartDate());
+                c.name("START_DATE_" + rowIndex);
+            });
+            // Дата окончания
+            r.cell(c -> {
+                c.value(task.getDueDate());
+                c.name("END_DATE_" + rowIndex);
+            });
+            // Роль получателя
+            r.cell(task.getAssigneeRole());
+            // Подсчет дней
+            r.cell(c -> {
+                c.formula("NETWORKDAYS.INTL(#{START_DATE_"+ rowIndex +"}, #{END_DATE_"+ rowIndex +"})");
+                c.name("DAYS_" + rowIndex);
+            });
+            // Занятость
+            r.cell(c -> {
+                c.value(task.getBusy().replace(".", ","));
+                c.name("BUSY_" + rowIndex);
+            });
+            // Ставка
+            r.cell(c -> {
+                c.value(hourlyRate.get(task.getAssigneeEmail()));
+                c.name("JOB_RATE_" + rowIndex);
+            });
+            // Итог (Дни * Занятость * Ставка)
+            r.cell(c -> {
+                c.formula("#{DAYS_"+ rowIndex +"} * #{BUSY_"+ rowIndex +"} * #{JOB_RATE_"+ rowIndex +"}");
+                c.name("SECTION_SUM_" + rowIndex);
+            });
+            // Подсчет строчек одной секции
+            sectionCount.getAndIncrement();
+
+            // Инкрементирование индекса строки
+            rowIndex.getAndIncrement();
+        });
     }
 
     private static void columnNames(SheetDefinition s) {
@@ -82,81 +145,20 @@ public class SpreadsheetWriter {
                 c.width(auto);
             });
             r.cell(c -> {
-                c.value("Ставка");
+                c.value("??????");
                 c.width(auto);
             });
             r.cell(c -> {
-                c.value("Итого");
+                c.value("?????");
                 c.width(20);
             });
         });
     }
 
-    private static void mainFields(List<Task> taskList, Map<String, Integer> hourlyRate, SheetDefinition s, String section, AtomicInteger rowIndex, AtomicInteger sectionCount, List<Integer> sectionSumInd) {
-        for (Task task : taskList) {
-
-            // Заполнение строки с итоговой суммой задач одной секции
-            if ((! task.getSectionColumn().equals(section))) {
-                section = sectionSum(s, section, rowIndex, sectionCount, sectionSumInd, task);
-            }
-
-            s.row(r -> {
-                // Название задачи
-                r.cell(task.getName());
-                // Секция
-                r.cell(task.getSectionColumn());
-                // Назначение
-                r.cell(task.getAssignee());
-                // Дата начала
-                r.cell(c -> {
-                    c.value(task.getStartDate());
-                    c.name("START_DATE_" + rowIndex);
-                });
-                // Дата окончания
-                r.cell(c -> {
-                    c.value(task.getDueDate());
-                    c.name("END_DATE_" + rowIndex);
-                });
-                // Роль получателя
-                r.cell(task.getAssigneeRole());
-                // Подсчет дней
-                r.cell(c -> {
-                    c.formula("NETWORKDAYS.INTL(#{START_DATE_"+ rowIndex +"}, #{END_DATE_"+ rowIndex +"})");
-                    c.name("DAYS_" + rowIndex);
-                });
-                // Занятость
-                r.cell(c -> {
-                    c.value(task.getBusy().replace(".", ","));
-                    c.name("BUSY_" + rowIndex);
-                });
-                // Ставка
-                r.cell(c -> {
-                    c.value(hourlyRate.get(task.getAssigneeEmail()));
-                    c.name("JOB_RATE_" + rowIndex);
-                });
-                // Итог (Дни * Занятость * Ставка)
-                r.cell(c -> {
-                    c.formula("#{DAYS_"+ rowIndex +"} * #{BUSY_"+ rowIndex +"} * #{JOB_RATE_"+ rowIndex +"}");
-                    c.name("SECTION_SUM_" + rowIndex);
-                });
-                // Подсчет строчек одной секции
-                sectionCount.getAndIncrement();
-
-                // Инкрементирование индекса строки
-                rowIndex.getAndIncrement();
-            });
-
-            // Итоговая сумма секции в случае последней задачи
-            if (rowIndex.get() == taskList.size()) {
-                section = sectionSum(s, section, rowIndex, sectionCount, sectionSumInd, task);
-            }
-        }
-    }
-
     private static void totalSumRow(SheetDefinition s, List<Integer> sectionSumInd) {
         s.row(r -> {
             r.cell(c -> {
-                c.value("Итого");
+                c.value("ИТОГ");
                 c.style(st -> st.font(f -> {
                     f.style(bold);
                     f.size(18);
@@ -189,7 +191,7 @@ public class SpreadsheetWriter {
         String finalSection = section;
         s.row(r -> {
             r.cell(c -> {
-                c.value("Итого");
+                c.value("Итог");
                 c.style(st -> st.font(f -> f.style(bold)));
             });
             r.cell(c -> {
