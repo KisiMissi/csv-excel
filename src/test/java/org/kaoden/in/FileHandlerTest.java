@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.kaoden.module.Task;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,10 +13,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FileHandlerTest {
 
+    /**
+     * Проверка корректного чтения файла
+     */
     @Test
-    void readingFile_NO_NULL() {
-
-        // Проверка корректного чтения файла
+    void readingFile_NO_NULL() throws IOException, NullPointerException {
 
         // Создание тестовой задачи
         Task testTask = new Task();
@@ -39,10 +42,18 @@ class FileHandlerTest {
         testTask.setCountDays("");
         testTask.setBusy("1.00");
         testTask.setProject("");
-
         List<Task> testTaskList = Collections.singletonList(testTask);
 
         assertEquals(testTaskList,
                 FileHandler.readingFile(new File("src\\test\\resources\\in\\TestInputFile.csv")));
+    }
+
+    /**
+     * Случай, когда файла не существует
+     */
+    @Test
+    void readingFile_FILE_NOT_FOUND_EXCEPTION() {
+        assertThrows(FileNotFoundException.class,
+                () -> FileHandler.readingFile(new File("")));
     }
 }

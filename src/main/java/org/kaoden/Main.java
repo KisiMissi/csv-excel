@@ -6,7 +6,12 @@ import org.kaoden.in.FileHandler;
 import org.kaoden.out.SpreadsheetWriter;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 public class Main {
 
@@ -18,26 +23,43 @@ public class Main {
     private final static File file =
             new File("src\\main\\resources\\In.csv");
 
+    private static Logger logger;
+
+    static {
+        try (FileInputStream ins = new FileInputStream("logging.properties")) {
+            LogManager.getLogManager().readConfiguration(ins);
+            logger = Logger.getLogger(FileHandler.class.getName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args){
 
-        // Списко задач
-        List<Task> taskList = FileHandler.readingFile(file);
         // Почасовая ставка сотрудников
         Map<String, Integer> hourlyRate = new HashMap<>();
 
         try {
+            // Списко задач
+            List<Task> taskList = FileHandler.readingFile(file);
+
             taskList.stream()
                     .filter(x -> !x.getAssigneeEmail().equals(""))
                     .forEach(x -> hourlyRate.put(x.getAssigneeEmail(), 350));
+
+            // Сортировка задач по дате
+            taskList = BeanListHandler.dropoutByDate(taskList, START_DATE, END_DATE);
+
+            // Создание и заполнение таблицы
+            SpreadsheetWriter.tableFilling(taskList, hourlyRate);
+
+        } catch (IOException e) {
+            logger.log(Level.WARNING, "File not found", e);
+            System.exit(1);
+
         } catch(NullPointerException e) {
-            // Остановка программы
-            System.out.println("Input file is empty.");
+            logger.log(Level.WARNING, "File is empty", e);
+            System.exit(1);
         }
-
-        // Сортировка задач по дате
-        taskList = BeanListHandler.dropoutByDate(taskList, START_DATE, END_DATE);
-
-        // Создание и заполнение таблицы
-        SpreadsheetWriter.tableFilling(taskList, hourlyRate);
     }
 }

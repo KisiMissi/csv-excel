@@ -18,6 +18,8 @@
     <file url="file://$PROJECT_DIR$/src/test/resources/in/BeanListHandler/TestInputFile_OUT_OF_PERIOD.csv" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/test/resources/in/BeanListHandler/TestInputFile_START_AND_DUE_DATE_EQUALS.csv" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/test/resources/in/BeanListHandler/TestInputFile_UNCHANGED_TASK.csv" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/in/FileHandler/TestInputFile_NULL_POINTER_EXCEPTION.csv" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/in/TestInputFile.csv" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/test/resources/in/TestInputFile.csv" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/task.txt" charset="UTF-8" />
     <file url="PROJECT" charset="windows-1251" />
