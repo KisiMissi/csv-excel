@@ -44,8 +44,9 @@ class FileHandlerTest {
         testTask.setProject("");
         List<Task> testTaskList = Collections.singletonList(testTask);
 
-        assertEquals(testTaskList,
-                FileHandler.readingFile(new File("src\\test\\resources\\in\\TestInputFile.csv")));
+        List<Task> actualTaskList = FileHandler.readingFile(new File("src\\test\\resources\\in\\TestInputFile.csv"));
+
+        assertEquals(testTaskList, actualTaskList);
     }
 
     /**

@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a8cca66-ce0a-443c-8b81-1076a3e05eb9" name="Changes" comment="First commit">
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/kaoden/in/BeanListHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/kaoden/in/BeanListHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/kaoden/in/FileHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/kaoden/in/FileHandlerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,24 +46,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3": "junit.framework.TestCase",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "extract.method.default.visibility": "private",
-    "last_opened_file_path": "D:/Projects/CsvParsing/src/test/resources/in/FileHandler",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.41149426",
-    "settings.editor.selected.configurable": "File.Encoding"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3&quot;: &quot;junit.framework.TestCase&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Projects/CsvParsing/src/test/resources/in/FileHandler&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.41149426&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Projects\CsvParsing\src\test\resources\in\FileHandler" />
@@ -83,7 +84,7 @@
       <recent name="org.kaoden.in" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.BeanListHandlerTest">
+  <component name="RunManager" selected="JUnit.FileHandlerTest">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.kaoden.Main" />
       <module name="CsvParsing" />
@@ -134,8 +135,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.BeanListHandlerTest" />
         <item itemvalue="JUnit.FileHandlerTest" />
+        <item itemvalue="JUnit.BeanListHandlerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -182,7 +183,8 @@
       <workItem from="1680261095923" duration="486000" />
       <workItem from="1680309473633" duration="8067000" />
       <workItem from="1680397293548" duration="864000" />
-      <workItem from="1680478483085" duration="4126000" />
+      <workItem from="1680478483085" duration="4946000" />
+      <workItem from="1682052468009" duration="1380000" />
     </task>
     <task id="LOCAL-00001" summary="Garbage removal">
       <created>1679198558364</created>
