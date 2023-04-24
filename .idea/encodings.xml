@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/logging.properties" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/kaoden/Main.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/kaoden/in/BeanListHandler.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/kaoden/in/FileHandler.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/org/kaoden/module/Task.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/kaoden/out/SpreadsheetWriter.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/org/kaoden/in/BeanListHandlerTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/org/kaoden/in/FileHandlerTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/in/BeanListHandler/TestInputFile_CHANGE_DUE_DATE.csv" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/in/BeanListHandler/TestInputFile_CHANGE_START_AND_DUE_DATE.csv" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/in/BeanListHandler/TestInputFile_CHANGE_START_DATE.csv" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/in/BeanListHandler/TestInputFile_NULL_BUSY.csv" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/in/BeanListHandler/TestInputFile_OUT_OF_PERIOD.csv" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/in/BeanListHandler/TestInputFile_START_AND_DUE_DATE_EQUALS.csv" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/in/BeanListHandler/TestInputFile_UNCHANGED_TASK.csv" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/in/FileHandler/TestInputFile_NULL_POINTER_EXCEPTION.csv" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/in/TestInputFile.csv" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/in/TestInputFile.csv" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/task.txt" charset="UTF-8" />
+    <file url="PROJECT" charset="windows-1251" />
   </component>
 </project>

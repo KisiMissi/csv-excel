@@ -1,9 +1,9 @@
 package org.kaoden.module;
 
 import com.opencsv.bean.CsvBindByPosition;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
+@Data
 public class Task {
 
     @CsvBindByPosition(position = 0)
@@ -18,28 +18,21 @@ public class Task {
     @CsvBindByPosition(position = 3)
     private String lastModified;
 
-    @Getter
     @CsvBindByPosition(position = 4)
     private String name;
 
-    @Getter
     @CsvBindByPosition(position = 5)
     private String sectionColumn;
 
-    @Getter
     @CsvBindByPosition(position = 6)
     private String assignee;
 
-    @Getter
     @CsvBindByPosition(position = 7)
     private String assigneeEmail;
 
-    @Getter
     @CsvBindByPosition(position = 8)
     private String startDate;
 
-    @Getter
-    @Setter
     @CsvBindByPosition(position = 9)
     private String dueDate;
 
@@ -64,15 +57,12 @@ public class Task {
     @CsvBindByPosition(position = 16)
     private String estimatedTime;
 
-    @Getter
     @CsvBindByPosition(position = 17)
     private String assigneeRole;
 
-    @Getter
     @CsvBindByPosition(position = 18)
     private String countDays;
 
-    @Getter
     @CsvBindByPosition(position = 19)
     private String busy;
 
